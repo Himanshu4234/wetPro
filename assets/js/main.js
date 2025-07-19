@@ -210,21 +210,6 @@ function closePopup() {
   document.body.classList.remove("noscroll");
 }
 
-// === DARK MODE ===
-const darkModeObserver = new MutationObserver(() => {
-  const toggleBtn = document.getElementById("darkModeToggle");
-  if (toggleBtn) {
-    if (localStorage.getItem("dark-mode") === "true") {
-      document.body.classList.add("dark-mode");
-    }
-    toggleBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
-    });
-    darkModeObserver.disconnect();
-  }
-});
-darkModeObserver.observe(document.getElementById("header") || document.body, { childList: true, subtree: true });
 
 // === SCROLL TO TOP ===
 const scrollBtnObserver = new MutationObserver(() => {
