@@ -1,0 +1,163 @@
+<!-- Top Header -->
+<div class="top-header">
+    <div class="container">
+        <div class="contact-infos">
+            <ul class="contact_detail list_none text-center text-md-left">
+                <li><button id="darkModeToggle" style="background: none; color: white; border: 1px solid #fff; padding: 5px 10px; border-radius: 5px;">🌓</button>
+                </li>
+                <li><a href="tel:+918217586462"><i class="ti-mobile"></i>📞 +91 8217586462</a></li>
+                <li><a href="mailto:sambit.pattnaik2@gmail.com" ><p style="color:white"><i class="fas fa-envelope"></i> sambit.pattnaik2@gmail.com</p></a></li>
+            </ul>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- Sticky Main Navbar -->
+<div class="main-header">
+    <div class="container">
+        <div class="logo">
+            <a href="/">
+                <img src="/assets/img/logo.png" alt="WetPro Logo" />
+            </a>
+        </div>
+        <div class="mobile-menu-header">
+        <!-- Hamburger Icon for Mobile -->
+        <div class="mobile-menu-icon" onclick="toggleMobileMenu()">
+            &#9776;
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-nav" id="mobileNav">
+            <div class="close-btn" onclick="toggleMobileMenu()">✖</div>
+            <nav class="mobile-nav-links">
+            <a href="/">Home</a>
+            <a href="/#products">Our Products</a>
+            <a href="/#about-section">About Us</a>
+            <a href="/Contact-us">Contact Us</a>
+            </nav>
+            <div class="mobile-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+        <nav class="nav-links">
+            <a class="active" href="/">Home</a>
+            <a href="/#products">Our Products</a>
+            <a href="/#about-section">About Us</a>
+            <a href="/Contact-us">Contact Us</a>
+        </nav>
+    </div>
+</div>
+
+<style>
+    /* Default header style */
+.main-header {
+  position: relative;
+  width: 100%;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+/* Sticky effect when scrolling */
+.main-header.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #ffffff; /* or any color */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.mobile-menu-header {
+    display: none;
+}
+/* Hide top-header on mobile if needed */
+nav.mobile-nav-links {
+    display: grid;
+    text-align: center;
+}
+@media (max-width: 768px) {
+  .top-header {
+    display: none;
+  }
+  .mobile-menu-header {
+        display: block;
+    }
+
+  .nav-links {
+    display: none;
+  }
+  .mobile-menu-icon {
+    display: block;
+    font-size: 30px;
+    cursor: pointer;
+    color: #000;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+  }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75%;
+    height: 100%;
+    background: white;
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .mobile-nav.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-nav nav a {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .close-btn {
+    font-size: 24px;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  nav.mobile-nav-links a{
+    font-size: 21px;
+  }
+  .mobile-social {
+    margin-top: auto;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .mobile-social a {
+    font-size: 20px;
+    color: #333;
+  }
+  .mobile-menu-icon.hidden {
+    display: none;
+    } 
+
+}
+
+
+
+</style>

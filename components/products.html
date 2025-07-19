@@ -1,0 +1,736 @@
+<style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f1f4f8;
+    }
+    .noscroll {
+      overflow: hidden;
+    }
+    .productContainer {
+      padding: 60px 40px;
+    }
+    .productContainer h1 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+      color: #2c3e50;
+    }
+    .productContainer .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .productContainer .cards {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      gap: 0px;
+    }
+    .productContainer .cards:hover {
+      transform: translateY(-5px);
+    }
+    .productContainer .cards img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .productContainer .cards .product_name {
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+    }
+    .productContainer .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .productContainer .popup.active {
+      display: flex;
+    }
+    .productContainer .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 1400px;
+      width: 95%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .productContainer .popup img {
+      width: 80%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .productContainer .popup h2 {
+      margin-top: 20px;
+      font-size:2.8rem;
+      color: #2c3e50;
+    }
+    .productContainer .popup p, .productContainer .popup h3 {
+      margin-top: 15px;
+      font-size: 1.5rem;
+      color: #555;
+    }
+    .productContainer .popup .sub-heading{
+      text-align: center;
+    }
+    .productContainer .popup table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .productContainer .popup th, .productContainer .popup td {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    .productContainer .close-btn {
+        display: block;
+        width: 92%;
+        text-align: right;
+        font-size: 30px;
+        color: #131212;
+        text-decoration: none;
+        margin-bottom: 10px;
+        cursor: pointer;
+        position: fixed;
+        right: 4%;
+        font-weight: 900;
+        top: 5%;
+        background: white;
+    }
+    @media (max-width: 768px) {
+        .productContainer .close-btn {
+            top: 5%;
+            border-radius: 16px;
+            width: 93%;
+        }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="productContainer">
+    <h1>Our Product Gallery</h1>
+    <div class="gallery">
+      <div class="cards" onclick="openPopup('popup1')">
+        <img src="assets/img/Jaw-Crusher.jpg" alt="Jaw Crusher">
+        <div class="product_name">Jaw Crusher</div>
+      </div>
+      <div class="cards" onclick="openPopup('popup2')">
+        <img src="assets/img/Cone-Crusher.jpg" alt="Cone Crusher">
+        <div class="product_name">  Cone Crusher</div>
+      </div>
+      <div class="cards" onclick="openPopup('popup3')">
+        <img src="assets/img/VSI.jpg" alt="VSi cursher">
+        <div class="product_name"> VSI Crusher</div>
+      </div>
+      <div class="cards" onclick="openPopup('popup4')">
+        <img src="assets/img/Vibrating-Screen.jpg" alt="Vibrating Screen">
+        <div class="product_name">  Vibrating Screen</div>
+      </div>
+      <div class="cards" onclick="openPopup('popup5')">
+        <img src="assets/img/Vibrating-Feeder.jpg" alt="Vibrating Feeder">
+        <div class="product_name">Vibrating Feeder</div>
+      </div>
+      <div class="cards" onclick="openPopup('popup6')">
+        <img src="assets/img/Sand-Washer.jpg" alt="Sand Washer">
+        <div class="product_name">Sand Washer</div>
+      </div>
+
+      <div class="cards" onclick="openPopup('popup7')">
+        <img src="assets/img/Thickener.jpg" alt="Thinkner">
+        <div class="product_name">Thikner</div>
+      </div>
+    </div>
+
+  <!-- Popup -->
+  <div class="popup" id="popup1">
+    <div class="popup-content elegant-popup">
+      <button class="close-btn" onclick="closePopup()" aria-label="Close popup">&times;</button>
+  
+      <div class="popup-header">
+        <img src="assets/img/Jaw-Crusher.jpg" alt="wetpro Jaw Crusher" class="popup-img" />
+        <div class="popup-title">
+          <h2>wetpro Jaw Crusher</h2>
+          <h3>Redefining Crushing Efficiency</h3>
+        </div>
+      </div>
+  
+      <div class="popup-body">
+        <p>
+          Discover the <strong>wetpro Jaw Crusher</strong> – engineered for top-tier performance in demanding quarry and mining operations. Built for
+          durability, versatility, and peak productivity.
+        </p>
+  
+        <h3>🔩 Key Features</h3>
+        <ul class="features-list">
+          <li><strong>Superior Crushing Power:</strong> Optimized chamber & jaw plate design.</li>
+          <li><strong>Versatile Application:</strong> Crushes hard rock, gravel, and concrete effortlessly.</li>
+          <li><strong>Robust Construction:</strong> Heavy-duty materials for long-term use.</li>
+          <li><strong>User-Friendly:</strong> Smart control panel and easy-access maintenance.</li>
+          <li><strong>Efficiency:</strong> Energy-saving technology ensures productivity.</li>
+        </ul>
+  
+        <h3>📊 wetpro Jaw Crusher Models</h3>
+        <div class="table-container">
+          <table class="popup-table">
+            <thead>
+              <tr>
+                <th>Jaw Model</th>
+                <th>Feed Opening (mm)</th>
+                <th>Max Feed Size (mm)</th>
+                <th>Drive Motor (HP)</th>
+                <th>CSS (mm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>36" x 24"</td><td>600 x 900</td><td>500</td><td>100</td><td>51–203</td></tr>
+              <tr><td>42" x 30"</td><td>1050 x 750</td><td>650</td><td>150</td><td>76–230</td></tr>
+              <tr><td>50" x 40"</td><td>1250 x 1000</td><td>850</td><td>200</td><td>100–250</td></tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <h3>✅ Why Choose wetpro?</h3>
+        <ul class="why-list">
+          <li><strong>Superior Quality:</strong> Built to world-class standards.</li>
+          <li><strong>Trusted Experience:</strong> Proven success across industries.</li>
+          <li><strong>Dedicated Support:</strong> We’re here from inquiry to installation.</li>
+          <li><strong>Customization:</strong> Tailored configurations for your operation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="popup" id="popup2">
+    <div class="popup-content elegant-popup">
+      <button class="close-btn" onclick="closePopup()" aria-label="Close popup">&times;</button>
+  
+      <div class="popup-header">
+        <img src="assets/img/Cone-Crusher.jpg" alt="wetpro Cone Crusher" class="popup-img" />
+        <div class="popup-title">
+          <h2>wetpro Cone Crusher</h2>
+          <h3 class="sub-heading">Excellence in Crushing Technology</h3>
+        </div>
+      </div>
+  
+      <div class="popup-body">
+        <p>
+          Introducing the <strong>wetpro Cone Crusher</strong> – the epitome of excellence in crushing technology.
+          Designed for maximum productivity, it’s perfect for efficient and reliable secondary and tertiary crushing across industries.
+        </p>
+  
+        <p>
+          Our cutting-edge cone crusher delivers superior performance in the toughest tasks. Whether crushing hard rock or softer materials, it ensures high-quality aggregates for construction, mining, and more.
+        </p>
+  
+        <h3>🔩 Key Features</h3>
+        <ul class="features-list">
+          <li><strong>Exceptional Crushing Efficiency:</strong> High reduction ratio, excellent particle shape, and consistent output quality.</li>
+          <li><strong>Versatile Application:</strong> Performs across hard/soft rocks, ores, and minerals for secondary & tertiary crushing.</li>
+          <li><strong>Robust Construction:</strong> Durable frame with reinforced components ensures long-term performance.</li>
+          <li><strong>Advanced Automation:</strong> Smart control system enables precise setting adjustments and real-time monitoring.</li>
+          <li><strong>Enhanced Safety:</strong> Built-in safety guards, emergency stops, and sensor systems protect your team.</li>
+        </ul>
+  
+        <h3>📊 wetpro Cone Crusher Models</h3>
+        <h4>🔷 Standard Head Series</h4>
+        <div class="table-container">
+          <table class="popup-table">
+            <thead>
+              <tr>
+                <th>Cone Model</th>
+                <th>Max Feed Size (mm)</th>
+                <th>Drive Motor (HP)</th>
+                <th>CSS Setting (mm)</th>
+                <th>Capacity (TPH)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>3508</td><td>170</td><td>100–125</td><td>24–36</td><td>128–207</td></tr>
+              <tr><td>3510</td><td>220</td><td>100–125</td><td>24–45</td><td>113–157</td></tr>
+              <tr><td>4508</td><td>170</td><td>200–225</td><td>18–28</td><td>164–215</td></tr>
+              <tr><td>4510</td><td>200</td><td>200–225</td><td>26–44</td><td>204–290</td></tr>
+              <tr><td>5012</td><td>240</td><td>200–250</td><td>27–45</td><td>305–395</td></tr>
+              <tr><td>5015</td><td>320</td><td>200–250</td><td>30–54</td><td>205–395</td></tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <h4>🔷 Fine Head Series</h4>
+        <div class="table-container">
+          <table class="popup-table">
+            <thead>
+              <tr>
+                <th>Cone Model</th>
+                <th>Max Feed Size (mm)</th>
+                <th>Drive Motor (HP)</th>
+                <th>CSS Setting (mm)</th>
+                <th>Capacity (TPH)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>3505</td><td>100</td><td>100–125</td><td>12–20</td><td>68–90</td></tr>
+              <tr><td>3506</td><td>120</td><td>100–125</td><td>14–22</td><td>83–112</td></tr>
+              <tr><td>4505</td><td>100</td><td>200–225</td><td>16–26</td><td>153–207</td></tr>
+              <tr><td>4507</td><td>150</td><td>200–225</td><td>18–28</td><td>163–211</td></tr>
+              <tr><td>5007</td><td>150</td><td>250–335</td><td>22–36</td><td>230–330</td></tr>
+              <tr><td>5010</td><td>210</td><td>250–335</td><td>24–38</td><td>255–350</td></tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <h3>✅ Why Choose wetpro Cone Crusher?</h3>
+        <ul class="why-list">
+          <li><strong>Unmatched Quality:</strong> Rigorous manufacturing ensures durability and long-term reliability.</li>
+          <li><strong>Expertise & Innovation:</strong> Leading-edge tech with years of experience built into every model.</li>
+          <li><strong>Comprehensive Support:</strong> From consultation to service, we’re with you every step of the way.</li>
+          <li><strong>Customization Options:</strong> Tailored setups for your exact production needs.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+ <div class="popup" id="popup3">
+  <div class="popup-content elegant-popup">
+    <button class="close-btn" onclick="closePopup()" aria-label="Close popup">&times;</button>
+
+    <div class="popup-header">
+      <img src="assets/img/VSI.jpg" alt="wetpro VSI Crusher" class="popup-img" />
+      <div class="popup-title">
+        <h2>wetpro Vertical Shaft Impactor (VSI Crusher)</h2>
+        <h3 class="sub-heading">Precision, Power, and Performance</h3>
+      </div>
+    </div>
+
+    <div class="popup-body">
+      <p>
+        The <strong>wetpro Vertical Shaft Impactor</strong> is a revolutionary solution for efficient and precise crushing of a wide range of materials.
+        Engineered to deliver exceptional product shape and superior performance, it sets new standards in the crushing industry.
+      </p>
+
+      <p>
+        Our VSI Crusher uses rock-on-rock technology to transform abrasive materials into high-quality manufactured sand and well-shaped aggregates for concrete and road construction.
+      </p>
+
+      <h3>🔩 Key Features</h3>
+      <ul class="features-list">
+        <li><strong>High-Performance Crushing Chamber:</strong> Optimized for particle-on-particle action resulting in excellent reduction and product shape.</li>
+        <li><strong>Rock-on-Rock Crushing Technology:</strong> Accelerates feed material against a stationary anvil for efficient cubical output.</li>
+        <li><strong>Adjustable Control:</strong> Operators can fine-tune rotor speed, feed rate, and cascade flow for precise gradation.</li>
+        <li><strong>Versatile Application:</strong> Suitable for hard rocks, ores, and minerals — excels in producing high-quality manufactured sand.</li>
+        <li><strong>Energy Efficient:</strong> Advanced rotor technology ensures reduced power consumption and low operating cost.</li>
+      </ul>
+
+      <h3>📊 wetpro VSI Models</h3>
+      <div class="table-container">
+        <table class="popup-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Max Feed Size (mm)</th>
+              <th>Power (HP)</th>
+              <th>Max Sand (0-4.75mm TPH)</th>
+              <th>Max Agg. (0-20mm TPH)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>ORE VSI 100</td><td>0-30</td><td>100</td><td>20–25</td><td>80–90</td></tr>
+            <tr><td>ORE VSI 150</td><td>0-30</td><td>150</td><td>25–30</td><td>90–100</td></tr>
+            <tr><td>ORE VSI 200</td><td>0-30</td><td>200</td><td>30–40</td><td>100–110</td></tr>
+            <tr><td>ORE VSI 250</td><td>0-30</td><td>250</td><td>40–45</td><td>110–120</td></tr>
+            <tr><td>ORE VSI 300</td><td>0-50</td><td>300</td><td>50–65</td><td>150–160</td></tr>
+            <tr><td>ORE VSI 400</td><td>0-50</td><td>400</td><td>65–75</td><td>160–180</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>✅ Why Choose wetpro VSI Crusher?</h3>
+      <ul class="why-list">
+        <li><strong>Cutting-Edge Technology:</strong> Innovative design and rock-on-rock crushing deliver unmatched performance.</li>
+        <li><strong>Reliable Build:</strong> Heavy-duty components ensure durability and lower maintenance.</li>
+        <li><strong>Full Customer Support:</strong> Backed by our expert technical and service teams.</li>
+        <li><strong>Customizable Options:</strong> Tailored to meet your specific application needs with precision engineering.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="popup" id="popup4">
+    <div class="popup-content">
+      <div class="close-btn" onclick="closePopup()">&times;</div>
+      <div class="popup-header">
+        <img src="assets/img/Vibrating-Screen.jpg" alt="wetpro Vibrating Screen">
+  
+        <h2>wetpro Vibrating Screen</h2>
+        <h3>Efficient and Precise Screening Solution</h3>
+      </div>
+      <div class="popup-body">
+      <p>The wetpro Vibrating Screen is the ultimate solution for precise material screening. Designed with advanced technology and precision engineering, it sets industry benchmarks in performance, durability, and versatility.</p>
+      <p>From fine aggregates to heavy-duty minerals, it separates and classifies particles with accuracy, improving product quality and productivity.</p>
+  
+      <h3>Key Features</h3>
+      <ul>
+        <li><strong>High Screening Efficiency:</strong> Equipped with multiple screen layers and exciters for accurate separation and maximum throughput.</li>
+        <li><strong>Versatile Application:</strong> Ideal for aggregates, ores, minerals, and industrial by-products across mining, quarrying, construction, and recycling industries.</li>
+        <li><strong>Customizable Configurations:</strong> Choose from different mesh types, screen sizes, and deck layouts to suit your specific application.</li>
+        <li><strong>Robust Construction:</strong> Engineered with durable components to perform in harsh and demanding environments.</li>
+        <li><strong>User-Friendly Operation:</strong> Intuitive controls and easy maintenance access simplify daily operation and servicing.</li>
+      </ul>
+  
+      <h3>wetpro VS Series Circular Motion Screen Models</h3>
+      <table class="popup-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Dimension (mm)</th>
+            <th>No. of Decks</th>
+            <th>Motor Required (KW)</th>
+            <th>Approx Weight (Kg)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>VS2060</td><td>2000 x 6000</td><td>4</td><td>20</td><td>7500</td></tr>
+          <tr><td>VS2060</td><td>2000 x 6000</td><td>3</td><td>20</td><td>7000</td></tr>
+          <tr><td>VS1845</td><td>1800 x 4500</td><td>4</td><td>15</td><td>6000</td></tr>
+          <tr><td>VS1845</td><td>1800 x 4500</td><td>3</td><td>15</td><td>5500</td></tr>
+          <tr><td>VS1240</td><td>1200 x 4000</td><td>4</td><td>11.5</td><td>4000</td></tr>
+          <tr><td>VS1240</td><td>1200 x 4000</td><td>3</td><td>11.5</td><td>3500</td></tr>
+        </tbody>
+      </table>
+  
+      <h3>Why Choose wetpro Vibrating Screen?</h3>
+      <ul>
+        <li><strong>Superior Quality:</strong> Precision-manufactured for outstanding durability and screening performance.</li>
+        <li><strong>Technological Expertise:</strong> Built with advanced design and years of screening experience.</li>
+        <li><strong>Comprehensive Support:</strong> wetpro provides technical guidance, application advice, and after-sales assistance.</li>
+        <li><strong>Customization Options:</strong> Fully configurable to meet your specific screening requirements.</li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  
+  <div class="popup" id="popup5">
+    <div class="popup-content">
+      <div class="close-btn" onclick="closePopup()">&times;</div>
+  
+      <img src="assets/img/Vibrating-Feeder.jpg" alt="wetpro Vibrating Feeder">
+  
+      <h2>wetpro Vibrating Feeder</h2>
+      <h3>Reliable and Efficient Material Feeding</h3>
+      <p>Introducing the wetpro Vibrating Feeder – the ideal solution for reliable and efficient material feeding in various industrial applications.</p>
+      <p>The wetpro Vibrating Feeder is a high-quality feeding machine designed to deliver a steady and controlled flow of materials. It is essential for industries like mining, quarrying, construction, and recycling where precise feeding is critical to efficiency.</p>
+  
+      <h3>Key Features</h3>
+      <ul>
+        <li><strong>Precise and Consistent Material Flow:</strong> Adjustable feed rates and consistent flow prevent surges, improving overall process stability and efficiency.</li>
+        <li><strong>Versatile Application Range:</strong> Handles bulk materials, granules, and powders; suitable for feeding crushers, screens, and conveyors.</li>
+        <li><strong>Robust Construction:</strong> Built with high-quality materials to ensure durability and reliable performance even under heavy-duty operations.</li>
+        <li><strong>Adjustable Feed Parameters:</strong> Fine-tune vibration intensity, amplitude, and rate based on material characteristics and production needs.</li>
+        <li><strong>User-Friendly Operation:</strong> Intuitive controls and easy access for maintenance reduce downtime and enhance safety.</li>
+      </ul>
+  
+      <h3>Why Choose wetpro Vibrating Feeder?</h3>
+      <ul>
+        <li><strong>Superior Quality:</strong> Precision-built to meet high-quality standards for consistent, long-term performance.</li>
+        <li><strong>Technological Expertise:</strong> Designed using cutting-edge technology and engineering expertise from years of industry experience.</li>
+        <li><strong>Comprehensive Support:</strong> Backed by expert support for setup, troubleshooting, and after-sales service.</li>
+        <li><strong>Customization Options:</strong> Choose your preferred feed size, capacity, and vibration settings to match your operation’s needs.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="popup" id="popup6">
+    <div class="popup-content">
+      <div class="close-btn" onclick="closePopup()">&times;</div>
+      <div class="popup-header">
+      <img src="assets/img/Sand-Washer.jpg" alt="wetpro Sand Washer">
+  
+      <h2>wetpro Sand Washer</h2>
+      <h3>Efficient Cleaning and Dewatering of Fine Materials</h3>
+    </div>
+    <div class="popup-body">
+      <p>Introducing the wetpro Sand Washer – the ultimate solution for efficient and effective cleaning and dewatering of sand and other fine materials.</p>
+      <p>Designed to remove impurities like dirt, dust, and clay from sand and aggregates, it ensures high-quality, clean sand ideal for use in construction, mining, and concrete production.</p>
+  
+      <h3>Key Features</h3>
+      <ul>
+        <li><strong>Superior Cleaning Efficiency:</strong> Advanced cleaning mechanisms with water jets and high-speed rotation ensure thoroughly washed sand.</li>
+        <li><strong>Versatile Application Range:</strong> Suitable for natural sand, crushed rock, and other fine materials across multiple industries.</li>
+        <li><strong>Efficient Dewatering Capability:</strong> Removes excess moisture, producing ready-to-use sand with the right moisture levels.</li>
+        <li><strong>Robust Construction:</strong> Built from durable components to withstand harsh environments with minimal maintenance.</li>
+        <li><strong>User-Friendly Operation:</strong> Intuitive controls and easy-access design simplify operation and servicing.</li>
+      </ul>
+  
+      <h3>wetpro Sand Washer Models</h3>
+      <div class="table-container">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Capacity (TPH)</th>
+              <th>De-Watering Screen (mm)</th>
+              <th>Hydro-Cyclone</th>
+              <th>High Rate Thickener (MTR)</th>
+              <th>Pump Capacity</th>
+              <th>Motor Details (HP)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>50</td>
+              <td>1500 x 2400</td>
+              <td>400</td>
+              <td>6</td>
+              <td>4/3</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td>75</td>
+              <td>1500 x 2400</td>
+              <td>500</td>
+              <td>8</td>
+              <td>6/4</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>1800 x 3600</td>
+              <td>600</td>
+              <td>10</td>
+              <td>8/6</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>150</td>
+              <td>1800 x 3600</td>
+              <td>800</td>
+              <td>12</td>
+              <td>8/6</td>
+              <td>70</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <h3>Why Choose wetpro Sand Washer?</h3>
+      <ul>
+        <li><strong>Superior Quality:</strong> Precision-built and tested to deliver exceptional results and reliability.</li>
+        <li><strong>Technological Expertise:</strong> Designed with cutting-edge features backed by deep industry knowledge.</li>
+        <li><strong>Comprehensive Support:</strong> Expert assistance before, during, and after installation ensures operational success.</li>
+        <li><strong>Customization Options:</strong> Choose capacity, screen size, and other features to suit your exact application.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  
+  <div class="popup" id="popup7">
+    <div class="popup-content">
+      <div class="close-btn" onclick="closePopup()">&times;</div>
+      <div class="popup-header">
+      <img src="assets/img/Thickener.jpg" alt="wetpro High Rate Thickener">
+      <h2>wetpro High Rate Thickener</h2>
+      <h3>Efficient Solid-Liquid Separation and Slurry Thickening</h3>
+    </div>
+    <div class="popup-body">
+      <p>Introducing the wetpro High Rate Thickener – the innovative solution for efficient solid-liquid separation and slurry thickening.</p>
+      <p>This high-capacity machine is essential in mining, mineral processing, wastewater treatment, and chemical plants, delivering reliable, cost-effective thickening performance.</p>
+  
+      <h3>Key Features</h3>
+      <ul>
+        <li><strong>High Throughput and Efficiency:</strong> Optimized for rapid sedimentation and clear overflow, maximizing settling area.</li>
+        <li><strong>Advanced Rake Mechanism:</strong> Continuous and smooth sludge removal with durable rake arms and blades.</li>
+        <li><strong>Adjustable Parameters:</strong> Fine-tune feed rate, underflow density, and overflow clarity for optimal results.</li>
+        <li><strong>Robust Construction:</strong> Built from premium materials for long-lasting, low-maintenance performance.</li>
+        <li><strong>User-Friendly Operation:</strong> Intuitive controls and easy access simplify operation and servicing.</li>
+      </ul>
+  
+      <h3>wetpro Range of Thickeners</h3>
+      <div class="table-container">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>ORE-THICK Diameter (Metres)</th>
+              <th>Side Wall Depth (mm)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>6</td><td>1800</td></tr>
+            <tr><td>8</td><td>2000</td></tr>
+            <tr><td>10</td><td>2200</td></tr>
+            <tr><td>12–24</td><td>2400</td></tr>
+            <tr><td>24–30</td><td>2600</td></tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <h3>Why Choose wetpro High Rate Thickener?</h3>
+      <ul>
+        <li><strong>Superior Quality:</strong> Precision-built to ensure dependable performance and durability.</li>
+        <li><strong>Technological Expertise:</strong> Combines industry knowledge with innovative design for reliable thickening.</li>
+        <li><strong>Comprehensive Support:</strong> Expert technical assistance and full lifecycle service support.</li>
+        <li><strong>Customization Options:</strong> Tailor diameter, capacity, and depth for your specific operational needs.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  
+
+  </div>
+
+
+  <style>
+    .elegant-popup {
+  max-width: 900px;
+  padding: 2rem;
+  background: var(--popup-bg, #fff);
+  color: var(--popup-text, #111);
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.elegant-popup.dark-mode {
+  --popup-bg: #121212;
+  --popup-text: #f0f0f0;
+}
+
+.popup-header {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.popup-img {
+  width: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.popup-title h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.popup-title h3 {
+  margin: 0.25rem 0 0;
+  color: #888;
+  font-weight: normal;
+}
+
+.popup-body h3 {
+  margin-top: 1.5rem;
+  font-size: 1.3rem;
+  border-left: 4px solid #007BFF;
+  padding-left: 10px;
+}
+
+.features-list, .why-list {
+  margin: 1rem 0;
+  padding-left: 1.2rem;
+}
+
+.features-list li, .why-list li {
+  margin: 0.4rem 0;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.popup-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.popup-table th, .popup-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #888;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* Make table heading text red */
+.popup-table thead th {
+  color: white;
+}
+
+
+.popup.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto
+
+}
+
+thead tr {
+    background: #8f0b0b;
+}
+
+
+
+.popup .specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  animation: fadeInUp 0.5s ease;
+}
+
+.popup .specs-table th {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.popup .specs-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  </style>
