@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://wetprominerals.com/sitemap.xml

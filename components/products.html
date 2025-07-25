@@ -115,11 +115,16 @@
         background: white;
     }
     @media (max-width: 768px) {
-        .productContainer .close-btn {
-            top: 5%;
-            border-radius: 16px;
-            width: 93%;
-        }
+      .productContainer .close-btn {
+          top: 5%;
+          border-radius: 16px;
+          width: 93%;
+      }
+      .productContainer .popup h2 {
+          text-align: center;
+          font-size: 2.5rem;
+          line-height: 1.3;
+      }
     }
 
   </style>
@@ -430,14 +435,15 @@
   <div class="popup" id="popup5">
     <div class="popup-content">
       <div class="close-btn" onclick="closePopup()">&times;</div>
-  
+      <div class="popup-header">
       <img src="assets/img/Vibrating-Feeder.jpg" alt="wetpro Vibrating Feeder">
   
       <h2>wetpro Vibrating Feeder</h2>
       <h3>Reliable and Efficient Material Feeding</h3>
+      </div>
+      <div class="popup-body">
       <p>Introducing the wetpro Vibrating Feeder – the ideal solution for reliable and efficient material feeding in various industrial applications.</p>
       <p>The wetpro Vibrating Feeder is a high-quality feeding machine designed to deliver a steady and controlled flow of materials. It is essential for industries like mining, quarrying, construction, and recycling where precise feeding is critical to efficiency.</p>
-  
       <h3>Key Features</h3>
       <ul>
         <li><strong>Precise and Consistent Material Flow:</strong> Adjustable feed rates and consistent flow prevent surges, improving overall process stability and efficiency.</li>
@@ -455,6 +461,7 @@
         <li><strong>Customization Options:</strong> Choose your preferred feed size, capacity, and vibration settings to match your operation’s needs.</li>
       </ul>
     </div>
+  </div>
   </div>
   
   <div class="popup" id="popup6">

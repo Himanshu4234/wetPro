@@ -32,20 +32,53 @@ window.onload = () => {
 };
 
 // === SMOOTH SCROLL TO HASH AFTER COMPONENT LOAD ===
-window.addEventListener("load", () => {
+function handleProductHashPopup() {
   const hash = window.location.hash;
-  if (hash) {
-    const tryScroll = () => {
-      const target = document.querySelector(hash);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      } else if ((window._scrollAttempts = (window._scrollAttempts || 0) + 1) < 20) {
-        setTimeout(tryScroll, 100);
-      }
+
+  if (hash.startsWith("#product=")) {
+    const productKey = hash.replace("#product=", "").toLowerCase();
+
+    const popupMap = {
+      "jaw-crusher": "popup1",
+      "cone-crusher": "popup2",
+      "vsi-crusher": "popup3",
+      "vibrating-screen": "popup4",
+      "vibrating-feeder": "popup5",
+      "sand-washer": "popup6",
+      "high-rate-thickener": "popup7"
     };
-    tryScroll();
+
+    const popupId = popupMap[productKey];
+
+    if (popupId) {
+      const tryScrollAndPopup = () => {
+        const productSection = document.getElementById("products");
+        const popup = document.getElementById(popupId);
+
+        if (productSection && popup) {
+          productSection.scrollIntoView({ behavior: "smooth" });
+
+          setTimeout(() => {
+            popup.classList.add("active");
+            document.body.classList.add("noscroll");
+          }, 500);
+        } else {
+          setTimeout(tryScrollAndPopup, 100);
+        }
+      };
+
+      tryScrollAndPopup();
+    }
   }
-});
+}
+
+// Handle first load
+window.addEventListener('load', handleProductHashPopup);
+
+// Handle clicks on same-page links (hash changes)
+window.addEventListener('hashchange', handleProductHashPopup);
+
+
 
 // === STICKY HEADER ===
 window.addEventListener("scroll", () => {
@@ -272,8 +305,10 @@ waitForCounter.observe(document.body, { childList: true, subtree: true });
 function toggleMobileMenu() {
   const mobileNav = document.getElementById("mobileNav");
   const menuIcon = document.querySelector(".mobile-menu-icon");
+  const whatsappIcon = document.querySelector(".whatsapp-float");
 
   mobileNav.classList.toggle("active");
   menuIcon.classList.toggle("hidden");
+  whatsappIcon.classList.toggle("shiftleft");
 
 }
